@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mobileapp/pages/dispscrn.dart';
+import 'package:mobileapp/pages/get_geopoints.dart';
 
-import 'pages/profilescrn.dart';
+import 'pages/profilescreen.dart';
 
 void main() {
   runApp(const MyApp());
