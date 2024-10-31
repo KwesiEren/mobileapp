@@ -1,40 +1,24 @@
-/*import 'package:intl/intl.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter/foundation.dart';
-import 'package:uuid/uuid.dart';
+import 'package:dio/dio.dart';
+import 'package:mobileapp/models/model.dart';
 
-SharedPreferences? landscapeghSP;
+class APIServices {
+  final Dio _dio = Dio();
+  final String baseUrl =
+      "https://your-api-url.com"; // replace with your actual API URL
 
-// I am feeling lazy to go through all the services files to
-// change the stageBaseUrls to productionBaseUrls so I am just
-// going to replace the stageBaseUrls with the correct production
-// url and comment out the original stageBa
-
-// Using this to set stageBaseUrl depending on the run profile being used
-// whether debug or otherwise
-
-String baseUrl = "";
-String socketBaseUrl = "";
-String socketAddUrl = "";
-
-String paramstageBaseUrl = "";
-
-void changeBaseUrlValue() {
-  if (kDebugMode) {
-    baseUrl = "http://landsensegh.cersgis.org/api/v1/";
-  } else {
-    baseUrl = "http://landsensegh.cersgis.org/api/v1/";
+  Future<List<GeoData>> fetchGeoData() async {
+    try {
+      final response = await _dio.get('$baseUrl/geo-data-endpoint');
+      if (response.statusCode == 200) {
+        // Convert the response data into a list of GeoData
+        return (response.data as List)
+            .map((item) => GeoData.fromJson(item))
+            .toList();
+      } else {
+        throw Exception('Failed to load GeoData');
+      }
+    } catch (e) {
+      throw Exception('Error fetching GeoData: $e');
+    }
   }
 }
-
-// https://servir-dev.cersgis.org/landscape-gh/api/v1/
-// url appendages
-String makeReportEndpoint = "data-submissions";
-
-////////////////////////////////////////////////////////////
-var newdate = DateTime.now();
-var formatDate = DateFormat('y-MM-dd');
-String formattedDate = formatDate.format(newdate);
-
-var uuid = const Uuid();
-*/
