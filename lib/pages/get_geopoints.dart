@@ -30,6 +30,11 @@ class _GetPointsState extends State<GetPoints> {
     return gottenGeoData;
   }
 
+  // Method to refresh data when pull-to-refresh is triggered
+  Future<void> refreshData() async {
+    await getGeoData();
+  }
+
   @override
   void initState() {
     super.initState();
@@ -66,14 +71,17 @@ class _GetPointsState extends State<GetPoints> {
                     ],
                   ),
                 )
-              : ListView.builder(
-                  itemCount: gottenGeoData.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final geoDataCarrier = gottenGeoData[index];
-                    return ListTile(
-                      title: Text(geoDataCarrier.region ?? "No region"),
-                    );
-                  },
+              : RefreshIndicator(
+                  onRefresh: refreshData, // Call refreshData on pull down
+                  child: ListView.builder(
+                    itemCount: gottenGeoData.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      final geoDataCarrier = gottenGeoData[index];
+                      return ListTile(
+                        title: Text(geoDataCarrier.region ?? "No region"),
+                      );
+                    },
+                  ),
                 ),
     );
   }
