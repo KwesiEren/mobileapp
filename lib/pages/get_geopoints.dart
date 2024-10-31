@@ -15,11 +15,15 @@ class _GetPointsState extends State<GetPoints> {
   bool isLoading = true; // To show loading indicator initially
 
   Future<List> getGeoData() async {
+    setState(() {
+      isLoading = true; // Ensure loading indicator shows while fetching data
+    });
+
     APIServices getData = APIServices();
     try {
       gottenGeoData = await getData.fetchGeoData();
       setState(() {
-        currentData = gottenGeoData;
+        gottenGeoData = currentData;
         isLoading = false;
       });
     } catch (e) {
@@ -54,20 +58,36 @@ class _GetPointsState extends State<GetPoints> {
                   CircularProgressIndicator(), // Show loading indicator while fetching
             )
           : gottenGeoData.isEmpty
-              ? const Center(
+              ? Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.warning,
                         color: Colors.orange,
                         size: 48.0,
                       ),
-                      SizedBox(height: 16),
-                      Text(
+                      const SizedBox(height: 16),
+                      const Text(
                         "No data available",
                         style: TextStyle(fontSize: 18, color: Colors.grey),
                       ),
+                      InkWell(
+                        splashColor: Colors.blue,
+                        onTap: () {
+                          setState(() {
+                            isLoading =
+                                true; // Show loading indicator before refreshing
+                          });
+                          refreshData();
+                        },
+                        child: const Card(
+                          child: SizedBox(
+                              height: 60,
+                              width: 70,
+                              child: Center(child: Text("Refresh"))),
+                        ),
+                      )
                     ],
                   ),
                 )
