@@ -9,6 +9,7 @@ class ProfileScrn extends StatefulWidget {
 }
 
 class _ProfileScrnState extends State<ProfileScrn> {
+  String? imagePath = "asset/bg2.png";
   @override
   Widget build(BuildContext context) {
     var screen = MediaQuery.of(context).size;
@@ -18,30 +19,43 @@ class _ProfileScrnState extends State<ProfileScrn> {
           width: screen.width,
           height: screen.height,
           decoration: const BoxDecoration(
-              color: Colors.white,
-              gradient: LinearGradient(
-                begin: Alignment.bottomRight,
-                end: Alignment.topLeft,
-                colors: [Colors.white, Colors.blueAccent],
-              )),
+            color: Colors.white,
+            // gradient: LinearGradient(
+            //   begin: Alignment.bottomRight,
+            //   end: Alignment.topLeft,
+            //   colors: [Colors.white, Colors.blueAccent],
+          ),
           child: Column(
             children: [
-              const SizedBox(
-                height: 30,
-              ),
               Container(
-                padding: const EdgeInsets.only(left: 130, top: 10, bottom: 10),
-                width: screen.width,
-                //height: 200,
-                //color: Colors.red,
-                child: const CircleAvatar(
-                  backgroundImage: AssetImage('asset/bg2.png'),
-                  radius: 80,
-                ),
-              ),
-              const SizedBox(
-                height: 40,
-              ),
+                  padding:
+                      const EdgeInsets.only(left: 130, top: 10, bottom: 10),
+                  width: screen.width,
+                  decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadiusDirectional.circular(4)),
+                  //height: 200,
+                  // color: Colors.red,
+                  child: Card(
+                      shadowColor: Colors.blueGrey,
+                      elevation: 10,
+                      shape: const CircleBorder(
+                        side: BorderSide(
+                            width: 1.0,
+                            color: Colors.blue,
+                            style: BorderStyle.none),
+                      ),
+                      child: Container(
+                        width: screen.width * 0.250,
+                        height: screen.width * 0.250,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                                color: Colors.lightGreen, width: 3.0),
+                            image: DecorationImage(
+                              image: AssetImage(imagePath!),
+                            )),
+                      ))),
               Padding(
                 padding: const EdgeInsets.only(left: 10),
                 child: Column(
@@ -50,30 +64,20 @@ class _ProfileScrnState extends State<ProfileScrn> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 5, vertical: 5),
                       width: screen.width,
-                      child: Row(
+                      child: const Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
+                          Text(
                             'Name : ',
                             style: TextStyle(fontSize: 18),
                           ),
                           Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 20),
-                              child: Container(
-                                width: screen.width * 0.55,
-                                height: screen.height * 0.05,
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(5)),
-                                child: const Padding(
-                                  padding: EdgeInsets.only(left: 8),
-                                  child: Text(
-                                    'Edwin Kpoh',
-                                    style: TextStyle(fontSize: 18),
-                                  ),
-                                ),
-                              ))
+                            padding: EdgeInsets.only(left: 8),
+                            child: Text(
+                              'Edwin Kpoh',
+                              style: TextStyle(fontSize: 18),
+                            ),
+                          )
                         ],
                       ),
                     ),
@@ -81,30 +85,20 @@ class _ProfileScrnState extends State<ProfileScrn> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 5, vertical: 5),
                       width: screen.width,
-                      child: Row(
+                      child: const Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
+                          Text(
                             'Age : ',
                             style: TextStyle(fontSize: 18),
                           ),
                           Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 20),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(5)),
-                                width: screen.width * 0.6,
-                                height: screen.height * 0.05,
-                                child: const Padding(
-                                  padding: EdgeInsets.only(left: 8),
-                                  child: Text(
-                                    '56',
-                                    style: TextStyle(fontSize: 18),
-                                  ),
-                                ),
-                              ))
+                            padding: EdgeInsets.only(left: 8),
+                            child: Text(
+                              '58',
+                              style: TextStyle(fontSize: 18),
+                            ),
+                          )
                         ],
                       ),
                     ),
@@ -112,30 +106,20 @@ class _ProfileScrnState extends State<ProfileScrn> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 5, vertical: 5),
                       width: screen.width,
-                      child: Row(
+                      child: const Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
+                          Text(
                             'Company : ',
                             style: TextStyle(fontSize: 18),
                           ),
                           Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 20),
-                              child: Container(
-                                width: screen.width * 0.5,
-                                height: screen.height * 0.05,
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(5)),
-                                child: const Padding(
-                                  padding: EdgeInsets.only(left: 8),
-                                  child: Text(
-                                    'CERSGIS',
-                                    style: TextStyle(fontSize: 18),
-                                  ),
-                                ),
-                              ))
+                            padding: EdgeInsets.only(left: 8),
+                            child: Text(
+                              'CERSGIS',
+                              style: TextStyle(fontSize: 18),
+                            ),
+                          )
                         ],
                       ),
                     ),
