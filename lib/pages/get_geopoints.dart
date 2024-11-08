@@ -11,7 +11,7 @@ class GetPoints extends StatefulWidget {
 
 class _GetPointsState extends State<GetPoints> {
   List<dynamic> gottenGeoData = [];
-  List<dynamic> currentData = [];
+  // List<dynamic> currentData = [];
   bool isLoading = true; // To show loading indicator initially
 
   Future<List> getGeoData() async {
@@ -23,7 +23,7 @@ class _GetPointsState extends State<GetPoints> {
     try {
       gottenGeoData = await getData.fetchGeoData();
       setState(() {
-        gottenGeoData = currentData;
+        // gottenGeoData = currentData;
         isLoading = false;
       });
     } catch (e) {
@@ -36,7 +36,13 @@ class _GetPointsState extends State<GetPoints> {
 
   // Method to refresh data when pull-to-refresh is triggered
   Future<void> refreshData() async {
+    debugPrint('Refresh started'); // Debugging log
     await getGeoData();
+    if (!mounted) return;
+    setState(() {
+      isLoading = false; // Ensure loading is stopped });
+      debugPrint('Refresh finished'); // Debugging log
+    });
   }
 
   @override
@@ -75,10 +81,10 @@ class _GetPointsState extends State<GetPoints> {
                       InkWell(
                         splashColor: Colors.blue,
                         onTap: () {
-                          setState(() {
-                            isLoading =
-                                true; // Show loading indicator before refreshing
-                          });
+                          // setState(() {
+                          //   isLoading = true;
+                          // });
+                          debugPrint("refreshed tapped");
                           refreshData();
                         },
                         child: const Card(
@@ -99,6 +105,8 @@ class _GetPointsState extends State<GetPoints> {
                       final geoDataCarrier = gottenGeoData[index];
                       return ListTile(
                         title: Text(geoDataCarrier.region ?? "No region"),
+                        subtitle: Text(
+                            geoDataCarrier.charcoalProductionType ?? "No type"),
                       );
                     },
                   ),

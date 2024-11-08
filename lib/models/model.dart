@@ -14,7 +14,7 @@ class GeoData {
   final int? id;
   final String? region;
   final String? charcoalProductionType;
-  final String? image; // Image data in Base64 format
+  final String? image; // Image URL
   final double? latitude;
   final double? longitude;
   final double? accuracy;

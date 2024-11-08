@@ -28,34 +28,53 @@ class _ProfileScrnState extends State<ProfileScrn> {
           child: Column(
             children: [
               Container(
-                  padding:
-                      const EdgeInsets.only(left: 130, top: 10, bottom: 10),
                   width: screen.width,
                   decoration: BoxDecoration(
-                      color: Colors.red,
+                      color: Colors.lightBlue,
                       borderRadius: BorderRadiusDirectional.circular(4)),
                   //height: 200,
                   // color: Colors.red,
-                  child: Card(
-                      shadowColor: Colors.blueGrey,
-                      elevation: 10,
-                      shape: const CircleBorder(
-                        side: BorderSide(
-                            width: 1.0,
-                            color: Colors.blue,
-                            style: BorderStyle.none),
-                      ),
-                      child: Container(
-                        width: screen.width * 0.250,
-                        height: screen.width * 0.250,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                                color: Colors.lightGreen, width: 3.0),
-                            image: DecorationImage(
-                              image: AssetImage(imagePath!),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Card(
+                          shadowColor: Colors.blueGrey,
+                          elevation: 10,
+                          shape: const CircleBorder(
+                            side: BorderSide(
+                                width: 1.0,
+                                color: Colors.blue,
+                                style: BorderStyle.none),
+                          ),
+                          child: Container(
+                            width: screen.width * 0.250,
+                            height: screen.width * 0.250,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                  color: Colors.lightGreen, width: 3.0),
+                            ),
+                            child: Center(
+                              child: CircleAvatar(
+                                backgroundImage: AssetImage(imagePath!),
+                                radius: 80,
+                              ),
+                            ),
+                          )),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 30, top: 30.0),
+                        child: SizedBox(
+                            width: screen.width * 0.50,
+                            child: const Text(
+                              "Cersgis Mobile Application Training",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  overflow: TextOverflow.clip),
                             )),
-                      ))),
+                      )
+                    ],
+                  )),
               Padding(
                 padding: const EdgeInsets.only(left: 10),
                 child: Column(
@@ -150,7 +169,7 @@ class _ProfileScrnState extends State<ProfileScrn> {
                 child: const Text(
                   'Exit',
                   style: TextStyle(
-                      fontSize: 40,
+                      fontSize: 30,
                       fontWeight: FontWeight.w400,
                       decoration: TextDecoration.underline,
                       color: Colors.red,
